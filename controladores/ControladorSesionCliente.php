@@ -9,7 +9,7 @@ class ControladorSesionCliente
 
     public function login($nombre, $clave)
     {
-        $repo = new RepositorioUsuario();
+        $repo = new RepositorioCliente();
         $usuario = $repo->login($nombre, $clave);
 
         if ($usuario === false) {
@@ -25,13 +25,13 @@ class ControladorSesionCliente
 
     public function create($dni, $nombre, $saldo, $clave)
     {
-        $repo = new RepositorioUsuario();
-        $usuario = new Usuario($dni, $nombre, $saldo);
+        $repo = new RepositorioCliente();
+        $usuario = new Cliente($dni, $nombre, $saldo);
         $dni = $repo->save($usuario, $clave);
         if ($dni === false) {
             return [false, "Error al crear el usuario"];
         } else {
-            $usuario->setDni($dni);
+            $usuario->setId($dni);
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
             return [true, "Usuario creado correctamente"];

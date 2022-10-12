@@ -1,40 +1,40 @@
 <?php
 
-require_once 'repositorios/RepoEmpresa.php';
+require_once 'repositorios/RepositorioEmpresa.php';
 require_once 'entidades/Empresa.php';
 
 class ControladorSesionEmpresa
 {
-    protected $empresa = null;
+    protected $usuario = null;
 
-    public function login($nombre_empresa, $clave)
+    public function login($nombre, $clave)
     {
-        $repo = new RepoEmpresa();
-        $empresa = $repo->login($nombre_empresa, $clave);
+        $repo = new RepositorioEmpresa();
+        $usuario = $repo->login($nombre, $clave);
 
-        if ($empresa === false) {
+        if ($usuario === false) {
             //Falló el login
             return [ false, "Error de credenciales" ];
         } else {
             //Login correcto, ingresar al sistema
             session_start();
-            $_SESSION['empresa'] = serialize($empresa);
-            return [ true, "empresa correctamente autenticado"];
+            $_SESSION['usuario'] = serialize($usuario);
+            return [ true, "Usuario correctamente autenticado"];
         }
     }
 
-    public function create($cuit, $nombre_empresa, $domicilio_empresa, $clave_encriptada, $saldo_empresa)
+    public function create($cuit, $nombre, $saldo, $domicilio, $clave)
     {
-        $repo = new RepoEmpresa();
-        $empresa = new Empresa($cuit, $nombre_empresa, $domicilio_empresa, $clave_encriptada, $saldo_empresa);
-        $cuit = $repo->save($empresa, $clave);
-        if ( $cuit === false) {
-            return [false, "Error al crear el empresa"];
+        $repo = new RepositorioEmpresa();
+        $usuario = new Empresa($cuit, $nombre, $saldo, $domicilio);
+        $cuit = $repo->save($usuario, $clave);
+        if ($cuit === false) {
+            return [false, "Error al crear el usuario"];
         } else {
-            $empresa->setCuit($cuit);
+            $usuario->setId($cuit);
             session_start();
-            $_SESSION['empresa'] = serialize($empresa);
-            return [true, "empresa creado correctamente"];
+            $_SESSION['usuario'] = serialize($usuario);
+            return [true, "Usuario creado correctamente"];
         }
     }
 }

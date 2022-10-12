@@ -27,27 +27,27 @@ class RepositorioCliente
 
    public function login($nombre, $clave)
    {
-       $q = "SELECT id, clave, nombre, apellido FROM usuarios WHERE usuario = ?";
+       $q = "SELECT dniCliente, nombreCliente, claveCliente, saldoCliente FROM clientes WHERE dniCliente = ?";
        $query = self::$conexion->prepare($q);
        $query->bind_param("s", $nombre);
 
        if ($query->execute()) {
-           $query->bind_result($id, $clave_encriptada, $nombre, $apellido);
+           $query->bind_result($dni, $nombre, $clave_encriptada, $saldoCliente);
            if( $query->fetch() ) {
                if ( password_verify($clave, $clave_encriptada) ) {
-                   return new Usuario($nombre, $nombre, $apellido, $id);
+                   return new Cliente($dni, $nombre, $saldoCliente);
                }
            }
        }
        return false;
     }
 
-    public function save(Usuario $usuario, $clave)
+    public function save(Cliente $usuario, $clave)
     {
        $q = "INSERT INTO clientes (dniCliente, nombreCliente, claveCliente, saldoCliente) ";
        $q.= "VALUES (?, ?, ?, ?)";
        $query = self::$conexion->prepare($q);
-       $dni = $usuario->getDni();
+       $dni = $usuario->getId();
        $nombre = $usuario->getNombre();
        $saldo = $usuario->getSaldo();
        $clave_encriptada = password_hash($clave, PASSWORD_DEFAULT);

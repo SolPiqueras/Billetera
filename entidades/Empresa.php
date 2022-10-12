@@ -1,15 +1,15 @@
 <?php
-
-require_once 'modelo/Usuario.php';
+require_once 'modelos/Usuario.php';
 
 class Empresa extends Usuario{
 
-    protected $domicilio_empresa;
-
-    public function __construct($cuit, $nombre_empresa, $saldo_empresa, $domicilio_empresa){
-        parent::__construct($cuit, $nombre_empresa, $saldo_empresa);
-        $this->domicilio_empresa = $domicilio_empresa;
-    }
+    protected $domicilio;
     
-    public function getDomicilio() {return $this->domicilio_empresa;}
+        public function __construct($cuit, $nombre, $saldo, $domicilio)
+        {
+            parent::__construct($cuit, $nombre, $saldo);
+            $this->domicilio = $domicilio;
+        }
+    
+        public function getDomicilio() {return $this->domicilio;}
 }

@@ -1,5 +1,6 @@
 <?php
-require_once 'entidades/Usuario.php';
+require_once 'entidades/Cliente.php';
+require_once 'entidades/Empresa.php';
 session_start();
 if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);

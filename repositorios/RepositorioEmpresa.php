@@ -12,7 +12,7 @@ class RepositorioEmpresa
             $credenciales = credenciales();
             self::$conexion = new mysqli(
                 $credenciales['servidor'],
-                $credenciales['empresa'],
+                $credenciales['usuario'],
                 $credenciales['clave'],
                 $credenciales['base_de_datos'],
             );
@@ -25,17 +25,17 @@ class RepositorioEmpresa
         }
    }
 
-   public function login($nombre_empresa, $clave)
+   public function login($nombre, $clave)
    {
-       $q = "SELECT cuit, nombreEmpresa, domicilioEmpresa, claveEmpresa, saldoEmpresa FROM empresas WHERE empresas = ?";
+       $q = "SELECT cuitEmpresa, nombreEmpresa, domicilioEmpresa, saldoEmpresa, calveEmpresa FROM empresas WHERE empresa = ?";
        $query = self::$conexion->prepare($q);
-       $query->bind_param("s", $nombre_empresa);
+       $query->bind_param("s", $nombre);
 
        if ($query->execute()) {
-           $query->bind_result($cuit, $nombre_empresa, domicilio_empresa, $clave_encriptada, $saldo_empresa);
+           $query->bind_result($cuit, $clave_encriptada, $nombre, $saldo, $direccion);
            if( $query->fetch() ) {
                if ( password_verify($clave, $clave_encriptada) ) {
-                   return new empresa($cuit, $nombre_empresa, domicilio_empresa, $saldo_empresa);
+                   return new empresa($nombre, $nombre, $apellido, $id);
                }
            }
        }
@@ -44,21 +44,21 @@ class RepositorioEmpresa
 
     public function save(Empresa $empresa, $clave)
     {
-       $q = "INSERT INTO empresas (cuit, nombreEmpresa, domicilioEmpresa, claveEmpresa, saldoEmpresa) ";
+       $q = "INSERT INTO Empresas (cuitEmpresa, nombreEmpresa, domicilioEmpresa, saldoEmpresa, claveEmpresa) ";
        $q.= "VALUES (?, ?, ?, ?, ?)";
        $query = self::$conexion->prepare($q);
-       $cuit = $empresa->getCuit();
-       $nombre_empresa = $empresa->getEmpresa();
-       $domicilio_empresa = $empresa->getDomicilio();       
+       $cuit = $empresa->getId();
+       $nombre = $empresa->getNombre();
+       $domicilio = $empresa->getDomicilio();
+       $saldo = $empresa->getSaldo();
        $clave_encriptada = password_hash($clave, PASSWORD_DEFAULT);
-       $saldo_empresa = $empresa->getSaldoempresa();
        $query->bind_param(
            "sssss",
            $cuit,
-           $nombre_empresa,
-           $domicilio_empresa,
-           $clave_encriptada,
-           $saldo_empresa
+           $nombre,
+           $domicilio,
+           $saldo,
+           $clave_encriptada
        );
        if ($query->execute()) {
            // Se guardó bien, retornamos el id del empresa
