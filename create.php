@@ -32,7 +32,7 @@ if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Bienvenido al sistema</title>
-        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
         <script>
@@ -58,15 +58,15 @@ if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])){
         ?>
 
         <form action="create.php" method="post">
-            <input name="id" class="form-control form-control-lg" placeholder="Usuario"><br>
-            <input name="clave" type="password" class="form-control form-control-lg" placeholder="Contraseña"><br>
-            <input name="nombre" class="form-control form-control-lg" placeholder="Nombre"><br>
-            <input name="saldo" class="form-control form-control-lg" placeholder="saldo"><br>
-            <input name="domicilio" class="form-control form-control-lg" placeholder="domicilio"><br>
-            <input type="radio" name="cliente" value="cliente">Cuenta personal
-            <input type="radio" name="empresa" value="empresa">Cuenta empresarial
+            <input type="text" name="id" id="id" class="form-control form-control-lg" placeholder="Usuario"><br>
+            <input type="password" name="clave" type="password" class="form-control form-control-lg" placeholder="Contraseña"><br>
+            <input type="text" name="nombre" class="form-control form-control-lg" placeholder="Nombre"><br>
+            <input type="number" name="saldo" id="saldo"class="form-control form-control-lg" min="0" onkeypress="return isNumeric(event)" placeholder="Saldo"><br>
+            <input type="text" name="domicilio" class="form-control form-control-lg" placeholder="Domicilio"><br>
+            <input type="checkbox" name="cliente" value="cliente">Cuenta personal
+            <input type="checkbox" name="empresa" value="empresa">Cuenta empresarial
             <input type="submit" value="Registrarse" class="btn btn-primary">
-        </form>        
+        </form>       
       </div> 
     </body>
 </html>

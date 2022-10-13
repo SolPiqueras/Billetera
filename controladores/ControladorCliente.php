@@ -36,14 +36,26 @@ class ControladorCliente
         }
     }
 
-    public function modificar($saldo, Cliente $usuario)
+    public function recargar($saldo, Cliente $usuario)
     {
         $repo = new RepositorioCliente();
-        $usuario->setDatos($saldo);
+        $usuario->setDatos($usuario->getSaldo() + $saldo);
 
         if ($repo->actualizar($usuario)) {
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
+            return [true, "Datos actualizados correctamente"];
+        } else {
+            return [false, "Error al actualizar datos"];
+        }
+    }
+
+    public function pagar($monto, Cliente $usuario)
+    {
+        $repo = new RepositorioCliente();
+        $usuario->setDatos($usuario->getSaldo() - $monto);
+
+        if ($repo->actualizar($usuario)) {
             return [true, "Datos actualizados correctamente"];
         } else {
             return [false, "Error al actualizar datos"];

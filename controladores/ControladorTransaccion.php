@@ -5,34 +5,20 @@ require_once 'entidades/Transaccion.php';
 
 class ControladorTransaccion
 {
-    protected $usuario = null;
+    protected $transaccion = null;
 
-    public function login($nombre, $clave)
+    public function create($monto, $cliente_id, $empresa_id)
     {
-        $repo = new RepositorioCliente();
-        $usuario = $repo->login($nombre, $clave);
-
-        if ($usuario === false) {
-            return [ false, "Error de credenciales" ];
-        } else {
-            session_start();
-            $_SESSION['usuario'] = serialize($usuario);
-            return [ true, "Usuario correctamente autenticado"];
-        }
-    }
-
-    public function create($id, $fecha_transaccion, $saldo, $cliente_id, $empresa_id)
-    {
-        $repo = new RepositorioTransacciones();
-        $usuario = new Transacciones($id, $fecha_transaccion, $saldo, $cliente_id, $empresa_id);
-        $id = $repo->save($usuario, $clave);
+        $repo = new RepositorioTransaccion();
+        $transaccion = new Transaccion($monto, $cliente_id, $empresa_id);
+        $id = $repo->save($transaccion);
         if ($id === false) {
-            return [false, "Error al crear el usuario"];
+            return [false, "Error al crear el transa$transaccion"];
         } else {
-            $usuario->setId($id);
+            $transaccion->setId($id);
             session_start();
-            $_SESSION['usuario'] = serialize($usuario);
-            return [true, "Usuario creado correctamente"];
+            $_SESSION['transa$transaccion'] = serialize($transaccion);
+            return [true, "transa$transaccion creado correctamente"];
         }
     }
 }

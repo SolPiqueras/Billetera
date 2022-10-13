@@ -18,5 +18,6 @@ abstract class Usuario
     public function getSaldo() {return $this->saldo;}
     public function setSaldo(){$this->saldo;}
     public function getNombre() {return $this->nombre;}
+    public function setDatos($saldo){$this->saldo= $saldo;}
 
 }

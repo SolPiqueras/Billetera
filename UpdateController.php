@@ -13,7 +13,7 @@ if (
     !empty($_POST['saldo'])
 ) {
     $cs = new ControladorCliente();
-    $result = $cs->modificar(
+    $result = $cs->recargar(
         $_POST['saldo'],
         $usuario
     );

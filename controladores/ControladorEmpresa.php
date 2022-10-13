@@ -35,4 +35,16 @@ class ControladorEmpresa
             return [true, "Usuario creado correctamente"];
         }
     }
+
+    public function modificar($monto, Empresa $empresa)
+    {
+        $repo = new RepositorioEmpresa();
+        $empresa->setDatos($empresa->getSaldo() + $monto);
+
+        if ($repo->actualizar($empresa)) {
+            return [true, "Datos actualizados correctamente"];
+        } else {
+            return [false, "Error al actualizar datos"];
+        }
+    }
 }

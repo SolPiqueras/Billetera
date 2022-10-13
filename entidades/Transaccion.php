@@ -8,7 +8,7 @@ class Transaccion{
     protected $cliente_id;
     protected $empresa_id;
 
-    public function __construct($fecha_transaccion, $saldo,  $cliente_id, $empresa_id, $id = null)
+    public function __construct($saldo,  $cliente_id, $empresa_id, $fecha_transaccion = null, $id = null)
     {
         $this->id = $id;
         $this->saldo = $saldo;

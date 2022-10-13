@@ -8,7 +8,4 @@ class Cliente extends Usuario
         parent::__construct($dni, $nombre, $saldo);
     }
 
-    public function setDatos($saldo){
-        $this->saldo= $saldo;
-    }
 }

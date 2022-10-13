@@ -44,10 +44,14 @@ class RepositorioCliente
 
     public function save(Cliente $usuario, $clave)
     {
+        function castID($id){
+            $id = str_replace( array('-'), '', $id);
+            return $int_value = intval($id);
+        }
        $q = "INSERT INTO clientes (dniCliente, nombreCliente, claveCliente, saldoCliente) ";
        $q.= "VALUES (?, ?, ?, ?)";
        $query = self::$conexion->prepare($q);
-       $dni = $usuario->getId();
+       $dni = castID($usuario->getId());
        $nombre = $usuario->getNombre();
        $saldo = $usuario->getSaldo();
        $clave_encriptada = password_hash($clave, PASSWORD_DEFAULT);

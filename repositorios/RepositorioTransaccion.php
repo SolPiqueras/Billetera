@@ -2,26 +2,29 @@
 
 require_once '.env.php';
 require_once 'entidades/Cliente.php';
+require_once 'entidades/Empresa.php';
 
-public function save(Cliente $usuario, $clave)
+class RepositorioTransaccion{
+    
+public function save(Cliente $usuario, Empresa $empresa, $monto)
 {
-   $q = "INSERT INTO clientes (dniCliente, nombreCliente, claveCliente, saldoCliente) ";
+   $q = "INSERT INTO transacciones (fechaTransaccion, montoTransaccion, clientes_idCliente, empresas_idEmpresa) ";
    $q.= "VALUES (?, ?, ?, ?)";
    $query = self::$conexion->prepare($q);
    $dni = $usuario->getId();
-   $nombre = $usuario->getNombre();
-   $saldo = $usuario->getSaldo();
-   $clave_encriptada = password_hash($clave, PASSWORD_DEFAULT);
+   $cuit = $empresa->getCuit();
+   $fechaTransaccion = new Datetime("now");
    $query->bind_param(
        "ssss",
+       $fechaTransaccion,
+       $monto,
        $dni,
-       $nombre,
-       $clave_encriptada,
-       $saldo
+       $cuit
    );
    if ($query->execute()) {
        return self::$conexion->insert_id;
    } else {
        return false;
    }
+}
 }

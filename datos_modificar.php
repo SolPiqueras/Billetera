@@ -18,19 +18,29 @@ if (isset($_SESSION['usuario'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Bienvenido al sistema</title>
-        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body class="container">
-      <div class="jumbotron text-center">
-      <h1>Billetera Virtual</h1>
-      </div>
-      <div class="text-center">
-        <h3>Modifica tu saldo</h3>
+    <div class="jumbotron text-center">
+        <h1>Operaciones Financieras</h1>
+    </div>
+    <?php
+            if (isset($_GET['mensaje'])) {
+                echo '<div id="mensaje" class="alert alert-primary text-center">
+                    <p>'.$_GET['mensaje'].'</p></div>';
+            }
+        ?>
+    <div class="d-flex justify-content-center">
         <form action="UpdateController.php" method="post">
-            <label for="usuario">Saldo</label>
-            <input type="saldo" name="saldo" class="form-control form-control-lg" placeholder="Saldo" value="<?php echo $saldo;?>"><br>
-            <input type="submit" value="Modificar saldo" class="btn btn-primary">
+            <div class="card" style="width: 28rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Tu saldo actual es: <?php echo $usuario->getSaldo();?></h5>
+                    <input type="saldo" name="saldo" class="form-control form-control-lg" placeholder="Saldo" value="<?php echo $saldo;?>"><br>
+                    <input type="submit" value="Recargar" class="btn btn-primary">
+                </div>
+            </div>
         </form>
-      </div>
-    </body>
+    </div>
+    </div>
+</body>
 </html>
