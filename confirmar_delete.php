@@ -1,11 +1,9 @@
 <?php
-// Validamos que el usuario tenga sesión iniciada:
+
 session_start();
 if (isset($_SESSION['usuario'])) {
-    // Si es así, recuperamos la variable de sesión
     $usuario = unserialize($_SESSION['usuario']);
 } else {
-    // Si no, redirigimos al login
     header('Location: index.php');
 }
 
@@ -19,7 +17,7 @@ if (isset($_SESSION['usuario'])) {
     </head>
     <body class="container">
       <div class="jumbotron text-center">
-      <h1>Sistema bancario</h1>
+      <h1>Billetera Virtual</h1>
       </div>
       <div class="text-center">
             <div id="mensaje" class="alert alert-danger text-center">
@@ -27,7 +25,7 @@ if (isset($_SESSION['usuario'])) {
                         Esta acción no se puede deshacer.</p>
             </div>
 
-            <form action="delete.php" method="post">
+            <form action="DeleteController.php" method="post">
             <label for="usuario">Escriba su nombre de usuario para <strong>eliminar</strong> su cuenta: </label><br>
             <input name="usuario" class="form-control form-control-lg" placeholder="Usuario"><br>
             <input type="submit" value="Eliminar usuario" class="btn btn-primary">

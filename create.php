@@ -1,9 +1,9 @@
 <?php
-require_once 'controladores/ControladorSesionCliente.php';
-require_once 'controladores/ControladorSesionEmpresa.php';
+require_once 'controladores/ControladorCliente.php';
+require_once 'controladores/ControladorEmpresa.php';
 
 if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])){
-        $cs = new ControladorSesionCliente();
+        $cs = new ControladorCliente();
         $result = $cs->create($_POST['id'], $_POST['nombre'], 
                               $_POST['saldo'], $_POST['clave']);
         if( $result[0] === true ) {
@@ -14,7 +14,7 @@ if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])){
         header('Location: ' . $redirigir);
 }else{
     if (isset($_POST['id']) && isset($_POST['clave'])) {
-        $cs = new ControladorSesionEmpresa();
+        $cs = new ControladorEmpresa();
         $result = $cs->create($_POST['id'], $_POST['nombre'], 
                               $_POST['saldo'], $_POST['domicilio'], $_POST['clave']);
         if( $result[0] === true ) {
@@ -33,6 +33,16 @@ if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])){
         <meta name="viewport" content="width=device-width">
         <title>Bienvenido al sistema</title>
         <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+        <script>
+            jQuery(function($){
+                $("#id").mask("99-999999");
+                $('input[type="checkbox"]').on('change', function() {
+                    $(this).siblings('input[type="checkbox"]').prop('checked', false);
+                });
+            });
+        </script>
     </head>
     <body class="container">
       <div class="jumbotron text-center">
@@ -54,7 +64,7 @@ if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])){
             <input name="saldo" class="form-control form-control-lg" placeholder="saldo"><br>
             <input name="domicilio" class="form-control form-control-lg" placeholder="domicilio"><br>
             <input type="radio" name="cliente" value="cliente">Cuenta personal
-            <input mask type="radio" name="empresa" value="empresa">Cuenta empresarial
+            <input type="radio" name="empresa" value="empresa">Cuenta empresarial
             <input type="submit" value="Registrarse" class="btn btn-primary">
         </form>        
       </div> 

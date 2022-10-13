@@ -14,17 +14,27 @@ if (isset($_SESSION['usuario'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Sistema bancario</title>
+        <title>Billetera Virtual</title>
         <link rel="stylesheet" href="bootstrap.min.css">
     </head>
     <body class="container">
       <div class="jumbotron text-center">
-      <h1>Sistema bancario</h1>
-      </div>    
+      <h1>Billetera Virtual</h1>
+      </div>
       <div class="text-center">
+        <?php
+            if (isset($_GET['mensaje'])) {
+                echo '<div id="mensaje" class="alert alert-primary text-center">
+                    <p>'.$_GET['mensaje'].'</p></div>';
+            }
+        ?>
         <h3>Hola <?php echo $nom;?></h3>
+        <p> Tu saldo : <?php echo $usuario->getSaldo();?></p>  
+
+        <p><a href="operacion.php">Realizar operación</a></p>
+        <p><a href="datos_modificar.php">Modificar mi saldo</a></p>
+        <p><a href="confirmar_delete.php" class="btn btn-danger">Eliminar mis datos</a></p>
         <p><a href="logout.php">Cerrar sesión</a></p>
-      </div> 
+      </div>
     </body>
 </html>
-

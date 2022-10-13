@@ -24,7 +24,7 @@
             <input name="clave" type="text" class="form-control form-control-lg" placeholder="Contraseña"><br>
             <input type="submit" value="Ingresar" class="btn btn-primary">
         </form><br>
-        <p><a href="CreateController.php">Crear nuevo usuario</a></p>
+        <p><a href="create.php">Crear nuevo usuario</a></p>
       </div> 
     </body>
 </html>

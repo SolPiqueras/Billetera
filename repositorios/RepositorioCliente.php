@@ -59,11 +59,41 @@ class RepositorioCliente
            $saldo
        );
        if ($query->execute()) {
-           // Se guardó bien, retornamos el id del usuario
            return self::$conexion->insert_id;
        } else {
-           // No se guardó bien, retornamos false
            return false;
        }
+    }
+
+    public function actualizar(Cliente $u)
+    {
+        $q = "UPDATE clientes SET saldoCliente = ? WHERE dniCliente = ?";
+        $query = self::$conexion->prepare($q);
+        $saldo = $u->getSaldo();
+        $id = $u->getId();
+
+        $query->bind_param("sd", $saldo, $id);
+
+        if ($query->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function eliminar(Cliente $u)
+    {
+        $q = "DELETE FROM clientes WHERE dniCliente = ?";
+        $query = self::$conexion->prepare($q);
+
+        $id = $u->getId();
+
+        $query->bind_param("d", $id);
+
+        if ($query->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

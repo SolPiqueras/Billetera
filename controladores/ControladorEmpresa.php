@@ -3,7 +3,7 @@
 require_once 'repositorios/RepositorioEmpresa.php';
 require_once 'entidades/Empresa.php';
 
-class ControladorSesionEmpresa
+class ControladorEmpresa
 {
     protected $usuario = null;
 
@@ -13,10 +13,8 @@ class ControladorSesionEmpresa
         $usuario = $repo->login($nombre, $clave);
 
         if ($usuario === false) {
-            //Falló el login
             return [ false, "Error de credenciales" ];
         } else {
-            //Login correcto, ingresar al sistema
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
             return [ true, "Usuario correctamente autenticado"];

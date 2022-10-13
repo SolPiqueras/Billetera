@@ -1,11 +1,10 @@
 <?php
-require_once 'controladores/ControladorSesionCliente.php';
-require_once 'controladores/ControladorSesionEmpresa.php';
+require_once 'controladores/ControladorCliente.php';
 
 if (empty($_POST['usuario']) || empty($_POST['clave'])) {
     $redirigir = 'index.php?mensaje=Error: Falta un campo obligatorio';
 } else {
-    $cs = new ControladorSesionCliente();
+    $cs = new ControladorCliente();
     $login = $cs->login($_POST['usuario'], $_POST['clave']);
     if ($login[0] === true) {
         $redirigir = 'home.php';

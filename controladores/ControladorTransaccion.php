@@ -1,9 +1,9 @@
 <?php
 
-require_once 'repositorios/RepositorioCliente.php';
-require_once 'entidades/Cliente.php';
+require_once 'repositorios/RepositorioTransaccion.php';
+require_once 'entidades/Transaccion.php';
 
-class ControladorSesionCliente
+class ControladorTransaccion
 {
     protected $usuario = null;
 
@@ -13,25 +13,23 @@ class ControladorSesionCliente
         $usuario = $repo->login($nombre, $clave);
 
         if ($usuario === false) {
-            //Falló el login
             return [ false, "Error de credenciales" ];
         } else {
-            //Login correcto, ingresar al sistema
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
             return [ true, "Usuario correctamente autenticado"];
         }
     }
 
-    public function create($dni, $nombre, $saldo, $clave)
+    public function create($id, $fecha_transaccion, $saldo, $cliente_id, $empresa_id)
     {
-        $repo = new RepositorioCliente();
-        $usuario = new Cliente($dni, $nombre, $saldo);
-        $dni = $repo->save($usuario, $clave);
-        if ($dni === false) {
+        $repo = new RepositorioTransacciones();
+        $usuario = new Transacciones($id, $fecha_transaccion, $saldo, $cliente_id, $empresa_id);
+        $id = $repo->save($usuario, $clave);
+        if ($id === false) {
             return [false, "Error al crear el usuario"];
         } else {
-            $usuario->setId($dni);
+            $usuario->setId($id);
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
             return [true, "Usuario creado correctamente"];

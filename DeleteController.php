@@ -2,33 +2,23 @@
 session_start();
 
 require_once 'entidades/Cliente.php';
-require_once 'clases/ControladorSesionCliente.php';
+require_once 'controladores/ControladorCliente.php';
 
-// Validamos que el usuario tenga sesión iniciada:
 if (isset($_SESSION['usuario'])) {
-    // Si es así, recuperamos la variable de sesión
     $usuario = unserialize($_SESSION['usuario']);
 } else {
-    // Si no, redirigimos al login
     header('Location: index.php');
 }
 
-// Si no recibió la confirmación, o recibe una confirmación incorrecta, redirige
-// al home.
 if (empty($_POST['usuario']) || $_POST['usuario'] != $usuario->getId()) {
     header("Location: home.php?mensaje=Error al eliminar el usuario");
     die();
 }
 
-$cs = new ControladorSesionCliente();
+$cs = new ControladorCliente();
 
-// Enviamos al controlador de sesión la orden de eliminar el usuario actual.
 $result = $cs->eliminar($usuario);
-// El segundo elemento ([1]) del array retornado por el método "eliminar"
-// del controlador, contiene un mensaje de éxito o error, según corresponda.
-// Redirigimos al index con ese mensaje:
 $redirigir = 'index.php?mensaje='.$result[1];
 
-// Desturimos la sesión y redirigimos al index:
 session_destroy();
 header("Location: $redirigir");
