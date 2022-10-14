@@ -1,11 +1,12 @@
+<?php include('navbar.php'); ?>
 <?php
-require_once 'controladores/ControladorCliente.php';
-require_once 'entidades/Cliente.php';
+require_once 'controladores/ControladorTransaccion.php';
+require_once 'entidades/Transaccion.php';
 
 session_start();
 if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);
-    $saldo = $usuario->getSaldo();
+    $monto = $usuario->getMonto();
 
 } else {
     header('Location: index.php');
@@ -17,7 +18,7 @@ if (isset($_SESSION['usuario'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Bienvenido al sistema</title>
+        <title>Billetera Virtual</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body class="container">
@@ -31,11 +32,11 @@ if (isset($_SESSION['usuario'])) {
             }
         ?>
     <div class="d-flex justify-content-center">
-        <form action="UpdateController.php" method="post">
+        <form action="Transaccion.php" method="post">
             <div class="card" style="width: 28rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Tu saldo actual es: <?php echo $saldo;?></h5>
-                    <input type="saldo" name="saldo" class="form-control form-control-lg" placeholder="Saldo" value="<?php echo $saldo;?>"><br>
+                    <h5 class="card-title">Tu saldo actual es: <?php echo $usuario->getSaldo();?></h5>
+                    <input type="monto" name="monto" class="form-control form-control-lg" placeholder="Monto" value="<?php echo $monto;?>"><br>
                     <input type="submit" value="Recargar" class="btn btn-primary">
                 </div>
             </div>

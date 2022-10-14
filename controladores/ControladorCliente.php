@@ -56,6 +56,8 @@ class ControladorCliente
         $usuario->setDatos($usuario->getSaldo() - $monto);
 
         if ($repo->actualizar($usuario)) {
+            session_start();
+            $_SESSION['usuario'] = serialize($usuario);
             return [true, "Datos actualizados correctamente"];
         } else {
             return [false, "Error al actualizar datos"];

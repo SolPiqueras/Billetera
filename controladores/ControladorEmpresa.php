@@ -42,6 +42,8 @@ class ControladorEmpresa
         $empresa->setDatos($empresa->getSaldo() + $monto);
 
         if ($repo->actualizar($empresa)) {
+            session_start();
+            $_SESSION['usuario'] = serialize($usuario);
             return [true, "Datos actualizados correctamente"];
         } else {
             return [false, "Error al actualizar datos"];
