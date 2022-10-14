@@ -1,0 +1,231 @@
+/* MODIFIQUE CONFIRMAR CREATE DATOS_NODIFICAR HOME E INDEX */
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-color: black;
+}
+
+.inputForm {
+  background-color: rgba(155, 171, 166, 0.214);
+  height: 25px;
+  font-size: 1em;
+  width: 30%;
+  margin: 1% auto;;
+  border: none;
+  border-radius: 7px;
+}
+.titleContainer{
+    background-color: rgba(241, 237, 237, 0);
+    height: 17vh;
+}
+h3{
+    margin: 5% 0;
+    color: rgb(255, 255, 255);
+}
+h1{
+    color: rgba(161, 171, 171, 0.793);
+    font-weight: bold;
+    text-align: center;
+}
+.form{
+    border-radius: 15px;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    box-shadow: 9px 12px 16px -1px rgba(162,146,146,1);
+-webkit-box-shadow: 9px 12px 16px -1px rgba(162,146,146,1);
+-moz-box-shadow: 9px 12px 16px -1px rgba(162,146,146,1);
+}
+.formLogin{
+  border-radius: 15px;
+  margin: auto;
+  width: 40%;
+  text-align: center;
+  box-shadow: 9px 12px 16px -1px rgba(162,146,146,1);
+-webkit-box-shadow: 9px 12px 16px -1px rgba(162,146,146,1);
+-moz-box-shadow: 9px 12px 16px -1px rgba(162,146,146,1);
+}
+.errorContainer{
+    background-color: rgba(239, 239, 239, 0);
+    width: 30%;
+    margin: auto;
+    border: none;
+}
+.errormsg{
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+}
+.btn btn-primary{
+    display: block;
+}
+.radioContainer {
+    width: 100%;
+    text-align: left;
+  }
+  .parentContainer {
+    width: 30%;
+    text-align: left;
+    margin: auto;
+    color: rgb(169, 158, 158);
+  }
+
+  .btn{
+    margin: 5% 0;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    height: 26px;
+    width: 13vw;
+    border-radius: 3px;
+  }
+  .btn:hover{
+
+    color: rgb(162, 149, 149) !important    ;
+  }
+
+  p{
+    margin-bottom: 3%;
+  }
+
+  h1:hover{
+    color: rgb(14, 53, 108);
+    font-size: 50px ;
+  }
+  a:link, a:visited, a:active {
+    text-decoration:none;
+    color: rgb(151, 23, 155);
+}
+
+.container{
+  background-color: black;
+}
+
+.prueba{
+  background-color: black !important;
+}
+.btnEliminarDatos{
+  color: rgb(0, 0, 0) !important;
+  width: 21% !important;
+  height: 50px;
+  background-color: white !important;
+  color: rgb(0, 0, 0) !important;
+  font-weight: bold;
+}
+
+.btnEliminarDatos:hover{
+  color: #fff !important;
+  background-color: #e11919 !important;
+  border-color: #e40909 !important;
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(255, 255, 255) !important;
+}
+
+.navbar {
+  background-color: #000 !important;
+}
+.jumbotron {
+  background-color: #000  !important;
+
+}
+
+.alert-danger {
+  color: #ac2532d1 !important;
+  background-color: #000 !important;
+  border-color: #000 !important;
+}
+
+
+.confirmInput {
+  width: 35% !important;
+  height: 30px !important;
+  background-color: rgba(155, 171, 166, 0.214) !important;
+  height: 25px !important;
+  font-size: 1em !important;
+  width: 30% !important;
+  margin: 1% auto !important;
+  border: none !important;
+  border-radius: 7px !important;
+}
+
+.btnConfirm{
+  background-color: #ffffff !important;
+  color: rgb(0, 0, 0) !important;
+  width: 25% !important;
+  height: 30px;
+}
+
+.btnConfirm:hover {
+  color: #fff !important;
+  background-color: #e11919 !important;
+  border-color: #e40909 !important;
+}
+
+
+.card {
+  width: 28rem  !important;
+  border: none  !important;
+  border-radius: 16px  !important;
+}
+
+.card-body{
+  background-color: #802091 !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.card-title {
+  text-align: center !important;
+}
+
+.text-muted {
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+
+
+.inputMonto {
+  background-color: rgba(155, 171, 166, 0.38) !important;
+  height: 39px !important;
+  font-size: 1em !important;
+  width: 100% !important;
+  margin: 1% auto !important;
+  border: none !important;
+  border-radius: 7px !important;
+}
+
+.card-subtitle {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.btnContainerOperacion{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnRecargar{
+  margin: 5% auto !important;
+}
+
+.btnRecargar {
+  color: #000  !important;
+  background-color: #fff  !important;
+  border: none  !important;
+  height: 30px  !important;
+}
+
+.btnRecargar:hover{
+  color: #fff !important;
+  background-color: #0fa331 !important;
+  border-color: #10aa28 !important;
+
+}

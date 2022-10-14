@@ -18,10 +18,11 @@ if (isset($_SESSION['usuario'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Bienvenido al sistema</title>
+        <link rel="stylesheet" href="./css/index.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body class="container">
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center titleContainer opFinancieras">
         <h1>Operaciones Financieras</h1>
     </div>
     <?php
@@ -31,12 +32,12 @@ if (isset($_SESSION['usuario'])) {
             }
         ?>
     <div class="d-flex justify-content-center">
-        <form action="UpdateController.php" method="post">
+        <form  action="UpdateController.php" method="post">
             <div class="card" style="width: 28rem;">
                 <div class="card-body">
                     <h5 class="card-title">Tu saldo actual es: <?php echo $saldo;?></h5>
-                    <input type="saldo" name="saldo" class="form-control form-control-lg" placeholder="Saldo" value="<?php echo $saldo;?>"><br>
-                    <input type="submit" value="Recargar" class="btn btn-primary">
+                    <input type="saldo" name="saldo" class="form-control form-control-lg inputForm" placeholder="Saldo" value="<?php echo $saldo;?>"><br>
+                    <input type="submit" value="Recargar" class="btn btn-primary btnRecargar">
                 </div>
             </div>
         </form>

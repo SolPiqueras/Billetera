@@ -2,7 +2,7 @@
 function credenciales() {
     return [
         'usuario'=>'root' ,
-        'clave'=>'root',
+        'clave'=>'password',
         'servidor'=>'localhost',
         'base_de_datos'=>'billetera'
     ];
