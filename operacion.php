@@ -54,8 +54,8 @@ if (isset($_SESSION['usuario'])) {
             <div class="card" style="width: 28rem;">
                 <div class="card-body">
                     <h5 class="card-title">Tu saldo actual es: <?php echo $usuario->getSaldo();?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Transferir</h6>
-                    <input type="number" name="monto" id="monto" class="form-control form-control-lg" min="0"
+                    <h6 class="card-subtitle mb-2">Transferir</h6>
+                    <input type="number" name="monto" id="monto" class="form-control form-control-lg inputMonto" min="0"
                         maxlength=<?php echo strval($usuario->getSaldo()); ?> oninput="maxLengthCheck(this)"
                         onkeypress="return isNumeric(event)" placeholder="Monto"><br>
                     <p>Empresas:
@@ -63,7 +63,7 @@ if (isset($_SESSION['usuario'])) {
                             <option value="0">Seleccione:</option>
                             <?php
                             $usuario = 'root';
-                            $password = 'root';
+                            $password = 'password'; // cuidado, aca va el password db local de c/u
                             $db = new PDO('mysql:host=localhost;dbname=Billetera', $usuario, $password);
                             $query = $db->prepare("SELECT * FROM empresas");
                             $query->execute();
@@ -75,8 +75,10 @@ if (isset($_SESSION['usuario'])) {
                         ?>
                         </select>
                     </p>
-                    <input type="submit" name="Comprar" value="Abonar" class="btn btn btn-light">
-                    <p><a href="datos_modificar.php" class="btn btn btn-light">Añadir Saldo</a></p>
+                    <div class="btnContainerOperacion">
+                        <input type="submit" name="Comprar" value="Abonar" class="btn btn btn-light">
+                        <p><a href="datos_modificar.php" class="btn btn btn-light">Añadir Saldo</a></p>
+                    </div>
                 </div>
             </div>
         </form>
