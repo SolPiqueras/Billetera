@@ -2,30 +2,31 @@
 require_once 'controladores/ControladorCliente.php';
 require_once 'controladores/ControladorEmpresa.php';
 
-if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])) {
-    $cs = new ControladorCliente();
-    $result = $cs->create(
-        $_POST['id'],
-        $_POST['nombre'],
-        $_POST['saldo'],
-        $_POST['clave']
+if (isset($_POST['id']) && isset($_POST['clave'])) {
+    if ($_POST['tipo'] === 'cliente1'){
+        $cs = new ControladorCliente();
+        $result = $cs->create(
+            $_POST['id'],
+            $_POST['nombre'],
+            $_POST['saldo'],
+            $_POST['clave']
     );
+    
     if ($result[0] === true) {
         $redirigir = 'home.php?mensaje=' . $result[1];
     } else {
         $redirigir = 'create.php?mensaje=' . $result[1];
     }
     header('Location: ' . $redirigir);
-} else {
-    if (isset($_POST['id']) && isset($_POST['clave'])) {
-        $cs = new ControladorEmpresa();
-        $result = $cs->create(
-            $_POST['id'],
-            $_POST['nombre'],
-            $_POST['saldo'],
-            $_POST['domicilio'],
-            $_POST['clave']
-        );
+    } else {
+            $cs = new ControladorEmpresa();
+            $result = $cs->create(
+                $_POST['id'],
+                $_POST['nombre'],
+                $_POST['saldo'],
+                $_POST['domicilio'],
+                $_POST['clave']
+            );
         if ($result[0] === true) {
             $redirigir = 'home.php?mensaje=' . $result[1];
         } else {
@@ -81,8 +82,10 @@ if (isset($_POST['cliente']) && isset($_POST['id']) && isset($_POST['clave'])) {
             <input type="number" name="saldo" id="saldo" class="form-control form-control-lg inputForm" min="0" onkeypress="return isNumeric(event)" placeholder="Saldo"><br>
             <input type="text" name="domicilio" class="form-control form-control-lg inputForm" placeholder="Domicilio"><br>
             <div class="parentContainer">
-                <div class="radioContainer"><input type="checkbox" name="cliente" value="cliente">Cuenta personal</div>
-                <div class="radioContainer"><input type="checkbox" name="empresa" value="empresa">Cuenta empresarial</div>
+                <select name="tipo" id="">
+                    <option value="cliente1">Cliente</option>
+                    <option value="empresa1">Empresa</option>
+                </select>
             </div>
             <input type="submit" value="Registrarse" class="btn btn-primary">
         </form>
