@@ -27,8 +27,14 @@ class RepositorioEmpresa
 
    public function login($nombre, $clave)
    {
+        function castID($id){
+            $id = str_replace( array('-'), '', $id);
+            return $int_value = intval($id);
+        }
+
        $q = "SELECT cuitEmpresa, nombreEmpresa, domicilioEmpresa, saldoEmpresa, calveEmpresa FROM empresas WHERE empresa = ?";
        $query = self::$conexion->prepare($q);
+       $cuit = castID($nombre);
        $query->bind_param("s", $nombre);
 
        if ($query->execute()) {
