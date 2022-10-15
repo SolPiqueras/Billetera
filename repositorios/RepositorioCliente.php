@@ -27,8 +27,13 @@ class RepositorioCliente
 
    public function login($nombre, $clave)
    {
+    function castID($id){
+        $id = str_replace( array('-'), '', $id);
+        return $int_value = intval($id);
+    }
        $q = "SELECT dniCliente, nombreCliente, claveCliente, saldoCliente FROM clientes WHERE dniCliente = ?";
        $query = self::$conexion->prepare($q);
+       $dni = castID($nombre);
        $query->bind_param("s", $nombre);
 
        if ($query->execute()) {
