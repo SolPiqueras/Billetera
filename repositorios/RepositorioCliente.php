@@ -87,7 +87,7 @@ class RepositorioCliente
 
     public function eliminar(Cliente $u)
     {
-        $q = "DELETE FROM clientes WHERE dniCliente = ?";
+        $q = "DELETE FROM clientes WHERE dniCliente = ? ";
         $query = self::$conexion->prepare($q);
 
         $id = $u->getId();

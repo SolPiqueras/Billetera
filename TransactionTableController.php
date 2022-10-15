@@ -6,6 +6,7 @@ session_start();
 if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);
     $nom = $usuario->getNombre();
+    $userId = $usuario->getId();
 } else {
     header('Location: index.php');
 }
@@ -33,21 +34,31 @@ if (isset($_SESSION['usuario'])) {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Saldo</th>
-                        <th scope="col">Lugar</th>
+                        <th scope="col">Empresa</th>
+                        <th scope="col">Fecha transacción</th>
+                        <th scope="col">Monto transacción</th>
                     </tr>
                 </thead>
-                <tbody class="" id="fetch-transaction-petition"></tbody>
-
-                <!-- <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                    </tbody> -->
+                <!-- <tbody class="" id="fetch-transaction-petition"></tbody> -->
+                <tbody>
+                    <!-- <tr> -->
+                    <?php
+                    $usuario = 'root';
+                    $password = 'password'; // cuidado, aca va el password db local de c/u
+                    $db = new PDO('mysql:host=localhost;dbname=Billetera', $usuario, $password);
+                    $query = $db->prepare("SELECT * FROM transacciones WHERE clientes_idCliente = $userId");
+                    $query->execute();
+                    $data = $query->fetchAll();
+                    foreach ($data as $valores) :
+                        echo '<tr>';
+                        echo '<th scope="row">' . $valores["idTransaccion"] . '</th>';
+                        echo '<td>' . $valores["empresas_idEmpresa"] . '</td>';
+                        echo '<td>' . $valores["fechaTransaccion"] . '</td>';
+                        echo '<td>' . $valores["montoTransaccion"] . '</td>';
+                        echo '</tr>';
+                    endforeach;
+                    ?>
+                </tbody>
             </table>
         </div>
     </form>
