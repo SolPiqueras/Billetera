@@ -75,9 +75,9 @@ if (isset($_SESSION['usuario'])) {
                         ?>
                         </select>
                     </p>
-                    <div class="btnContainerOperacion">
-                        <input type="submit" name="Comprar" value="Abonar" class="btn btn btn-light">
-                        <p><a href="datos_modificar.php" class="btn btn btn-light">Añadir Saldo</a></p>
+                    <div class="btnContainer">
+                        <input type="submit" name="Comprar" value="Abonar" class="btn btn btn-light abonar">
+                        <p><a href="datos_modificar.php" class="btn btn btn-light añadirSaldo">Añadir Saldo</a></p>
                     </div>
                 </div>
             </div>

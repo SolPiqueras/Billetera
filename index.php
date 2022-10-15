@@ -20,7 +20,7 @@
         <?php
         if (isset($_GET['mensaje'])) {
             echo '<div id="mensaje" class="alert alert-primary text-center">
-                <p>' . $_GET['mensaje'] . '</p></div>';
+                <p class="hidden">' . $_GET['mensaje'] . '</p></div>';
         }
         ?>
 
