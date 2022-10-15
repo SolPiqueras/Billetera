@@ -44,10 +44,16 @@ class RepositorioEmpresa
 
     public function save(Empresa $empresa, $clave)
     {
+
+        function castID($id){
+            $id = str_replace( array('-'), '', $id);
+            return $int_value = intval($id);
+        }
+
        $q = "INSERT INTO Empresas (cuitEmpresa, nombreEmpresa, domicilioEmpresa, saldoEmpresa, claveEmpresa) ";
        $q.= "VALUES (?, ?, ?, ?, ?)";
        $query = self::$conexion->prepare($q);
-       $cuit = $empresa->getId();
+       $cuit = castID($empresa->getId());
        $nombre = $empresa->getNombre();
        $domicilio = $empresa->getDomicilio();
        $saldo = $empresa->getSaldo();
