@@ -27,7 +27,7 @@
         <form class='formLogin' action="login.php" method="post">
             <h3>Login de usuario</h3>
             <input name="usuario" class="form-control form-control-lg inputForm" placeholder="Usuario"><br>
-            <input name="clave" type="text" class="form-control form-control-lg inputForm" placeholder="Contraseña"><br>
+            <input name="clave" type="password" class="form-control form-control-lg inputForm" placeholder="Contraseña"><br>
             <input type="submit" value="Ingresar" class="btn btn-primary">
             <p><a href="create.php">Crear nuevo usuario</a></p>
         </form><br>
