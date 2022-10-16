@@ -58,6 +58,20 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
                 $(this).siblings('input[type="checkbox"]').prop('checked', false);
             });
         });
+
+        function valideKey(evt) {
+
+            // code is the decimal ASCII representation of the pressed key.
+            var code = (evt.which) ? evt.which : evt.keyCode;
+
+            if (code == 8) { // backspace.
+                return true;
+            } else if (code >= 48 && code <= 57) { // is a number.
+                return true;
+            } else { // other keys.
+                return false;
+            }
+        }
     </script>
 </head>
 
@@ -72,12 +86,13 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
             <p>' . $_GET['mensaje'] . '</p></div>';
         }
         ?>
+
         <form method="post">
             <h1 style="color: #fff;text-shadow: 0 0 10px rgba(0,0,0,0.3);letter-spacing: 1px;text-align: center;">Registro</h1>
             <input type="text" name="id" id="id" placeholder="Usuario" required="required" />
             <input type="password" name="clave" placeholder="Contraseña" required="required" />
             <input type="text" name="nombre" placeholder="Nombre" required="required" />
-            <input type="number" name="saldo" id="saldo" min="0" onkeypress="return isNumeric(event)" placeholder="Saldo"" required=" required" />
+            <input type="number" name="saldo" id="saldo" min="0" onkeypress="return valideKey(event)" placeholder="Saldo" required="required" />
             <input type="text" name="domicilio" placeholder="Domicilio"" required=" required" />
             <div class="parentContainer">
                 <select name="tipo" id="" style="margin: 3% auto;height: 30px;background-color: #05050545;border: none;border-radius: 4px;width: 33%;color: #ffffffa6;">
@@ -87,6 +102,7 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
             </div>
             <button type="submit" value="Registrarse" class="btn btn-primary btn-block btn-large">Registrarse</button>
         </form>
+
     </div>
 </body>
 
