@@ -59,18 +59,21 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
             });
         });
 
-        function valideKey(evt) {
-
-            // code is the decimal ASCII representation of the pressed key.
-            var code = (evt.which) ? evt.which : evt.keyCode;
-
-            if (code == 8) { // backspace.
-                return true;
-            } else if (code >= 48 && code <= 57) { // is a number.
-                return true;
-            } else { // other keys.
-                return false;
+        function limitDecimalPlaces(e, count) {
+            if (e.target.value.indexOf('.') == -1) {
+                return;
             }
+            if ((e.target.value.length - e.target.value.indexOf('.')) > count) {
+                e.target.value = parseFloat(e.target.value).toFixed(count);
+            }
+        }
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
         }
     </script>
 </head>
@@ -92,7 +95,7 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
             <input type="text" name="id" id="id" placeholder="Usuario" required="required" />
             <input type="password" name="clave" placeholder="Contraseña" required="required" />
             <input type="text" name="nombre" placeholder="Nombre" required="required" />
-            <input type="number" name="saldo" id="saldo" min="0" onkeypress="return valideKey(event)" placeholder="Saldo" required="required" />
+            <input type="text" name="saldo" id="saldo" min="0" oninput="limitDecimalPlaces(event, 2)" onkeypress="return isNumberKey(event)" placeholder="Saldo" required="required" />
             <input type="text" name="domicilio" placeholder="Domicilio"" required=" required" />
             <div class="parentContainer">
                 <select name="tipo" id="" style="margin: 3% auto;height: 30px;background-color: #05050545;border: none;border-radius: 4px;width: 33%;color: #ffffffa6;">

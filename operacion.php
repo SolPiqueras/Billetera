@@ -36,6 +36,8 @@ if (isset($_SESSION['usuario'])) {
                 if (theEvent.preventDefault) theEvent.preventDefault();
             }
         }
+
+        
     </script>
 </head>
 
