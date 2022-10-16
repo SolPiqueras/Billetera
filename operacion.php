@@ -21,9 +21,10 @@ if (isset($_SESSION['usuario'])) {
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script>
         function maxLengthCheck(object) {
-            if (object.value > object.maxLength) {
+            if (object.value > object.maxLength ) {
                 object.value = object.maxLength
             }
+            
         }
 
         function isNumeric(evt) {
