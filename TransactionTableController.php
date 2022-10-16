@@ -64,6 +64,5 @@ if (isset($_SESSION['usuario'])) {
     </form>
     </div>
 </body>
-<script src="./js/fetchTransactions.js"></script>
 
 </html>

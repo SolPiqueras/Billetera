@@ -3,30 +3,30 @@ require_once 'controladores/ControladorCliente.php';
 require_once 'controladores/ControladorEmpresa.php';
 
 if (isset($_POST['id']) && isset($_POST['clave'])) {
-    if ($_POST['tipo'] === 'cliente1'){
+    if ($_POST['tipo'] === 'cliente1') {
         $cs = new ControladorCliente();
         $result = $cs->create(
             $_POST['id'],
             $_POST['nombre'],
             $_POST['saldo'],
             $_POST['clave']
-    );
-    
-    if ($result[0] === true) {
-        $redirigir = 'home.php?mensaje=' . $result[1];
+        );
+
+        if ($result[0] === true) {
+            $redirigir = 'home.php?mensaje=' . $result[1];
+        } else {
+            $redirigir = 'create.php?mensaje=' . $result[1];
+        }
+        header('Location: ' . $redirigir);
     } else {
-        $redirigir = 'create.php?mensaje=' . $result[1];
-    }
-    header('Location: ' . $redirigir);
-    } else {
-            $cs = new ControladorEmpresa();
-            $result = $cs->create(
-                $_POST['id'],
-                $_POST['nombre'],
-                $_POST['saldo'],
-                $_POST['domicilio'],
-                $_POST['clave']
-            );
+        $cs = new ControladorEmpresa();
+        $result = $cs->create(
+            $_POST['id'],
+            $_POST['nombre'],
+            $_POST['saldo'],
+            $_POST['domicilio'],
+            $_POST['clave']
+        );
         if ($result[0] === true) {
             $redirigir = 'home.php?mensaje=' . $result[1];
         } else {
@@ -44,8 +44,7 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Bienvenido al sistema</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/test.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -63,31 +62,29 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
 </head>
 
 <body class="container">
-    <div class="jumbotron text-center titleContainer">
+<div class=titleContainer" style="text-align: center;font-size: 25px;color: white;">
         <h1>Billetera Virtual</h1>
     </div>
-    <div class="text-center">
+    <div class="text-center" style="width: 30%;margin: auto;">
         <?php
         if (isset($_GET['mensaje'])) {
             echo '<div id="mensaje" class="alert alert-primary text-center">
             <p>' . $_GET['mensaje'] . '</p></div>';
         }
         ?>
-
-<form class="form" action="create.php" method="post">
-            <h3>Crear nuevo usuario</h3>
-            <input type="text" name="id" id="id" class="form-control form-control-lg inputForm" placeholder="Usuario"><br>
-            <input type="password" name="clave" type="password" class="form-control form-control-lg inputForm" placeholder="Contraseña"><br>
-            <input type="text" name="nombre" class="form-control form-control-lg inputForm" placeholder="Nombre"><br>
-            <input type="number" name="saldo" id="saldo" class="form-control form-control-lg inputForm" min="0" onkeypress="return isNumeric(event)" placeholder="Saldo"><br>
-            <input type="text" name="domicilio" class="form-control form-control-lg inputForm" placeholder="Domicilio"><br>
+        <form method="post">
+            <input type="text" name="id" id="id" placeholder="Usuario" required="required" />
+            <input type="password" name="clave" placeholder="Contraseña" required="required" />
+            <input type="text" name="nombre" placeholder="Nombre" required="required" />
+            <input type="number" name="saldo" id="saldo" min="0" onkeypress="return isNumeric(event)" placeholder="Saldo"" required=" required" />
+            <input type="text" name="domicilio" placeholder="Domicilio"" required=" required" />
             <div class="parentContainer">
                 <select name="tipo" id="">
                     <option value="cliente1">Cliente</option>
                     <option value="empresa1">Empresa</option>
                 </select>
             </div>
-            <input type="submit" value="Registrarse" class="btn btn-primary">
+            <button type="submit" value="Registrarse" class="btn btn-primary btn-block btn-large">Registrarse</button>
         </form>
     </div>
 </body>
