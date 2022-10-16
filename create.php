@@ -44,7 +44,7 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Bienvenido al sistema</title>
-    <link rel="stylesheet" href="./css/test.css">
+    <link rel="stylesheet" href="./css/form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
 </head>
 
 <body class="container">
-<div class=titleContainer" style="text-align: center;font-size: 25px;color: white;">
+    <div class=titleContainer" style="text-align: center;font-size: 25px;color: white;">
         <h1>Billetera Virtual</h1>
     </div>
     <div class="text-center" style="width: 30%;margin: auto;">
@@ -73,13 +73,14 @@ if (isset($_POST['id']) && isset($_POST['clave'])) {
         }
         ?>
         <form method="post">
+            <h1 style="color: #fff;text-shadow: 0 0 10px rgba(0,0,0,0.3);letter-spacing: 1px;text-align: center;">Registro</h1>
             <input type="text" name="id" id="id" placeholder="Usuario" required="required" />
             <input type="password" name="clave" placeholder="Contraseña" required="required" />
             <input type="text" name="nombre" placeholder="Nombre" required="required" />
             <input type="number" name="saldo" id="saldo" min="0" onkeypress="return isNumeric(event)" placeholder="Saldo"" required=" required" />
             <input type="text" name="domicilio" placeholder="Domicilio"" required=" required" />
             <div class="parentContainer">
-                <select name="tipo" id="">
+                <select name="tipo" id="" style="margin: 3% auto;height: 30px;background-color: #05050545;border: none;border-radius: 4px;width: 33%;color: #ffffffa6;">
                     <option value="cliente1">Cliente</option>
                     <option value="empresa1">Empresa</option>
                 </select>

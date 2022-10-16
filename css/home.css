@@ -1,0 +1,30 @@
+.titleContainer{
+    background-color: rgba(241, 237, 237, 0) !important;
+    height: 17vh;
+}
+h3{
+    margin: 5% 0;
+    color: rgb(255, 255, 255);
+}
+h1{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.btnEliminarDatos{
+    color: rgb(0, 0, 0) !important;
+    width: 21% !important;
+    height: 50px;
+    background-color: rgb(255, 0, 0) !important;
+    font-weight: bold;
+  }
+  
+  .btnEliminarDatos:hover{
+    color: rgb(0, 0, 0) !important;
+    background-color: #e11919 !important;
+    border-color: #e40909 !important;
+  
+  }
