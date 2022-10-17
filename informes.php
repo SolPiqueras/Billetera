@@ -40,10 +40,14 @@ if (isset($_SESSION['usuario'])) {
                         <?php                            
                             if (isset($_REQUEST['max'])){
                                 $muestra1 = '<div class="card-body " style="width: 33rem;>
-                                            <h2 class="card-title">Transacción máxima</h2>';        
+                                            <h2 class="card-title">Transacción máxima</h2>';
+                                $col = '<th scope="col">Transacción máxima</th>';
+                                $pedido = "MAX";
                             }else if (isset($_REQUEST['min'])){
                                 $muestra1 = '<div class="card-body " style="width: 33rem;>
-                                            <h2 class="card-title">Transacción mínima</h2>'; 
+                                            <h2 class="card-title">Transacción mínima</h2>';
+                                $col = '<th scope="col">Transacción mínima</th>';
+                                $pedido = "MIN";
                             }else{
                                 $muestra1 = '<div class="card-body " style="width: 33rem; display: none;">';
                             }
@@ -54,21 +58,15 @@ if (isset($_SESSION['usuario'])) {
                                 <thead>
                                     <tr>
                                         <th scope="col">Cliente</th>
-                                        <th scope="col">Transacción máxima</th>
+                                        <?php echo "$col"; ?>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Empresa</th>
                                     </tr>
                                 </thead>
                                     <tbody>
                                         <?php
-
-                                        if (isset($_REQUEST['max'])){
-                                            $pedido = "MAX";
-                                        }else if (isset($_REQUEST['min'])){
-                                            $pedido = "MIN";
-                                        }
                                         $usuario = 'root';
-                                        $password = 'password'; // cuidado, aca va el password db local de c/u
+                                        $password = 'npEGa2014'; // cuidado, aca va el password db local de c/u
                                         $db = new PDO('mysql:host=localhost;dbname=Billetera', $usuario, $password);
                                         $query = $db->prepare("SELECT $pedido(montoTransaccion) AS PrecioMax, C.nombreCliente AS NombreC, E.nombreEmpresa AS NombreE, fechaTransaccion AS fecha FROM billetera.transacciones T INNER JOIN billetera.clientes C INNER JOIN billetera.empresas E WHERE T.clientes_idCliente = C.dniCliente AND E.cuitEmpresa = T.empresas_idEmpresa ;
                                         ");
