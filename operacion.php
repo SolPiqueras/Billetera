@@ -64,7 +64,7 @@ if (isset($_SESSION['usuario'])) {
                             <option value="0">Seleccione:</option>
                             <?php
                             $usuario = 'root';
-                            $password = 'password'; // cuidado, aca va el password db local de c/u
+                            $password = 'npEGa2014'; // cuidado, aca va el password db local de c/u
                             $db = new PDO('mysql:host=localhost;dbname=Billetera', $usuario, $password);
                             $query = $db->prepare("SELECT * FROM empresas");
                             $query->execute();
