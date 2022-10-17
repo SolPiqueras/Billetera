@@ -17,7 +17,7 @@ if (isset($_SESSION['usuario'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Billetera Virtual</title>
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/home.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -27,12 +27,12 @@ if (isset($_SESSION['usuario'])) {
 
 <body class="container">
   <div class="jumbotron text-center titleContainer prueba">
-    <h1>Billetera Virtual</h1>
+    <h1>Bienvenido/a</h1>
   </div>
   <div class="text-center">
     <h3>Hola <?php echo $nom; ?></h3>
     <p><a href="logout.php">Cerrar sesión</a></p>
-    <p><a href="confirmar_delete.php" class="btn btn-danger btnEliminarDatos ">Eliminar mis datos</a></p>
+    <p><a href="confirmar_delete.php" class="btn btn-danger r btnEliminarDatos">Eliminar mis datos</a></p>
   </div>
 </body>
 
