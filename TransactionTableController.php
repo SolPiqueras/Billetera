@@ -19,14 +19,18 @@ if (isset($_SESSION['usuario'])) {
     <meta name="viewport" content="width=device-width">
     <title>Billetera Virtual</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tableTransactions.css">
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script>
     </script>
 </head>
 
 <body class="container">
-    <div class="jumbotron text-center">
+    <!-- <div class="jumbotron text-center">
         <h1>Ultimas Transacciones</h1>
+    </div> -->
+    <div class=titleContainer" style="text-align: center;font-size: 35px;color: white;">
+        <h1 style="font-size: 31px;margin: 5% auto;font-weight: bold;">Últimas Transacciones</h1>
     </div>
     <form action="TransactionTableController.php" method="post">
         <div class="table-responsive-lg">
@@ -64,6 +68,5 @@ if (isset($_SESSION['usuario'])) {
     </form>
     </div>
 </body>
-<script src="./js/fetchTransactions.js"></script>
 
 </html>

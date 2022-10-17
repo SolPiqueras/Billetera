@@ -20,44 +20,45 @@ if (isset($_SESSION['usuario'])) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script>
-    function maxLengthCheck(object) {
-        if (object.value > object.maxLength) {
-            object.value = object.maxLength
+        function maxLengthCheck(object) {
+            if (object.value > object.maxLength ) {
+                object.value = object.maxLength
+            }
+            
         }
-    }
 
-    function isNumeric(evt) {
-        var theEvent = evt || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-        var regex = /[0-9]|\./;
-        if (!regex.test(key)) {
-            theEvent.returnValue = false;
-            if (theEvent.preventDefault) theEvent.preventDefault();
+        function isNumeric(evt) {
+            var theEvent = evt || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+            var regex = /[0-9]|\./;
+            if (!regex.test(key)) {
+                theEvent.returnValue = false;
+                if (theEvent.preventDefault) theEvent.preventDefault();
+            }
         }
-    }
+
+        
     </script>
 </head>
 
 <body class="container">
-    <div class="jumbotron text-center">
-        <h1>Operaciones Financieras</h1>
+    <div class=titleContainer" style="text-align: center;font-size: 35px;color: white;">
+        <h1 style="font-size: 31px;margin: 5% auto;font-weight: bold;">Operaciones Financieras</h1>
     </div>
     <?php
-            if (isset($_GET['mensaje'])) {
-                echo '<div id="mensaje" class="alert alert-primary text-center">
-                    <p>'.$_GET['mensaje'].'</p></div>';
-            }
-        ?>
+    if (isset($_GET['mensaje'])) {
+        echo '<div id="mensaje" class="alert alert-primary text-center">
+                    <p>' . $_GET['mensaje'] . '</p></div>';
+    }
+    ?>
     <div class="d-flex justify-content-center">
         <form action="TransaccionController.php" method="post">
             <div class="card" style="width: 28rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Tu saldo actual es: <?php echo $usuario->getSaldo();?></h5>
+                    <h5 class="card-title">Tu saldo actual es: <?php echo $usuario->getSaldo(); ?></h5>
                     <h6 class="card-subtitle mb-2">Transferir</h6>
-                    <input type="number" name="monto" id="monto" class="form-control form-control-lg inputMonto" min="0"
-                        maxlength=<?php echo strval($usuario->getSaldo()); ?> oninput="maxLengthCheck(this)"
-                        onkeypress="return isNumeric(event)" placeholder="Monto"><br>
+                    <input type="number" name="monto" id="monto" class="form-control form-control-lg inputMonto" min="0" maxlength=<?php echo strval($usuario->getSaldo()); ?> oninput="maxLengthCheck(this)" onkeypress="return isNumeric(event)" placeholder="Monto"><br>
                     <p>Empresas:
                         <select name="listaEmpresas">
                             <option value="0">Seleccione:</option>
@@ -69,15 +70,15 @@ if (isset($_SESSION['usuario'])) {
                             $query->execute();
                             $data = $query->fetchAll();
 
-                            foreach ($data as $valores):
-                                echo '<option value="'.$valores["cuitEmpresa"].'">'.$valores["nombreEmpresa"].'</option>';
+                            foreach ($data as $valores) :
+                                echo '<option value="' . $valores["cuitEmpresa"] . '">' . $valores["nombreEmpresa"] . '</option>';
                             endforeach;
-                        ?>
+                            ?>
                         </select>
                     </p>
                     <div class="btnContainer">
-                        <input type="submit" name="Comprar" value="Abonar" class="btn btn btn-light abonar">
-                        <p><a href="datos_modificar.php" class="btn btn btn-light añadirSaldo">Añadir Saldo</a></p>
+                        <input type="submit" name="Comprar" value="Abonar" class="btn btn btn-light abonar" style="color: green;font-weight: bold;">
+                        <p><a style="display: block;color: blue;font-weight: bold;margin: 5% auto;" href="datos_modificar.php" class="btn btn btn-light añadirSaldo">Añadir Saldo</a></p>
                     </div>
                 </div>
             </div>
