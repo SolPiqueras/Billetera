@@ -20,7 +20,7 @@ if (isset($_SESSION['usuario'])) {
 </head>
 
 <body class="container">
-  <div class=titleContainer" style="text-align: center;font-size: 35px;color: white;">
+  <div class="titleContainer" style="text-align: center;font-size: 35px;color: white;">
     <h1 style="font-size: 31px;margin: 5% auto;font-weight: bold;"> Pago realizado con éxito</h1>
   </div>
   <div class="text-center">

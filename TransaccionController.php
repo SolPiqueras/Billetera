@@ -14,15 +14,11 @@ if (isset($_SESSION['usuario'])) {
 $empresa = "";
  if(isset($_POST['listaEmpresas'])){
     $empresa= htmlentities($_POST['listaEmpresas']);
-}else{
-    echo "No funco";
 }
 
 if (
     !empty($_POST['monto'])
 ) {
-    
-    
     $cs = new ControladorTransaccion();
     $result = $cs->create(
         $_POST['monto'],

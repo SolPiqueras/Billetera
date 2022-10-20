@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class=titleContainer" style="text-align: center;font-size: 25px;color: white;">
+    <div class="titleContainer" style="text-align: center;font-size: 25px;color: white;">
         <h1>Billetera Virtual</h1>
     </div>
 
