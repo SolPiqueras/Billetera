@@ -28,7 +28,7 @@ if (
 
     $redirigir = 'PagoRealizado.php?mensaje='.$result[1];
 } else {
-    $mensaje = "No fue posible modificar tus datos.";
+    $mensaje = "No fue posible realizar la transacción.";
     $redirigir = "home.php?mensaje=$mensaje";
 }
 header("Location: $redirigir");

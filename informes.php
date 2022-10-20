@@ -67,7 +67,13 @@ if (isset($_SESSION['usuario'])) {
                                         $usuario = 'root';
                                         $password = 'npEGa2014'; // cuidado, aca va el password db local de c/u
                                         $db = new PDO('mysql:host=localhost;dbname=Billetera', $usuario, $password);
-                                        $query = $db->prepare("SELECT montoTransaccion AS PrecioMax, C.nombreCliente AS NombreC, E.nombreEmpresa AS NombreE, fechaTransaccion AS fecha FROM billetera.transacciones T INNER JOIN billetera.clientes C INNER JOIN billetera.empresas E WHERE T.clientes_idCliente = C.dniCliente AND E.cuitEmpresa = T.empresas_idEmpresa AND montoTransaccion=(SELECT $pedido(montoTransaccion) FROM transacciones)");
+                                        $query = $db->prepare("SELECT montoTransaccion AS PrecioMax, C.nombreCliente AS NombreC, E.nombreEmpresa AS NombreE, fechaTransaccion AS fecha 
+                                                                FROM billetera.transacciones T 
+                                                                INNER JOIN billetera.clientes C 
+                                                                INNER JOIN billetera.empresas E 
+                                                                WHERE T.clientes_idCliente = C.dniCliente 
+                                                                AND E.cuitEmpresa = T.empresas_idEmpresa 
+                                                                AND montoTransaccion=(SELECT $pedido(montoTransaccion) FROM transacciones)");
                                         $query->execute();
                                         $data = $query->fetchAll();
                                         foreach ($data as $valores) :

@@ -32,7 +32,7 @@
           <a class="nav-link" href="TransactionTableController.php" style=" color:white">Ultimas Transacciones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="informes.php">Informes</a>
+          <a class="nav-link" style=" color:white" href="informes.php">Informes</a>
         </li>
       </ul>
     </div>

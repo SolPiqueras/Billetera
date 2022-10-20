@@ -47,10 +47,10 @@ if (isset($_SESSION['usuario'])) {
         <h1 style="font-size: 31px;margin: 5% auto;font-weight: bold;">Operaciones Financieras</h1>
     </div>
     <?php
-    if (isset($_GET['mensaje'])) {
-        echo '<div id="mensaje" class="alert alert-primary text-center">
-                    <p>' . $_GET['mensaje'] . '</p></div>';
-    }
+    // if (isset($_GET['mensaje'])) {
+    //     echo '<div id="mensaje" class="alert alert-primary text-center">
+    //                 <p>' . $_GET['mensaje'] . '</p></div>';
+    // }
     ?>
     <div class="d-flex justify-content-center">
         <form action="TransaccionController.php" method="post">
