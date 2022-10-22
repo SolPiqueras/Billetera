@@ -14,6 +14,12 @@
 <body>
     <div class="titleContainer" style="text-align: center;font-size: 25px;color: white;">
         <h1>Billetera Virtual</h1>
+        <?php
+    if (isset($_GET['mensaje'])) {
+        echo '<div id="mensaje" class="alert alert-primary text-center">
+                    <p>' . $_GET['mensaje'] . '</p></div>';
+    }
+    ?>
     </div>
 
     <!-- 

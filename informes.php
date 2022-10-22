@@ -35,7 +35,7 @@ if (isset($_SESSION['usuario'])) {
         <div class= "d-flex px-0 justify-content-center ">            
             
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-bg-warning">
                     <div class="card">                        
                         <?php                            
                             if (isset($_REQUEST['max'])){
@@ -53,7 +53,6 @@ if (isset($_SESSION['usuario'])) {
                             }
                             echo "$muestra1";
                             ?>          
-                            <!-- <h5 class="card-title">Transacción máxima</h5> -->
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -68,9 +67,13 @@ if (isset($_SESSION['usuario'])) {
                                         $usuario = 'root';
                                         $password = 'npEGa2014'; // cuidado, aca va el password db local de c/u
                                         $db = new PDO('mysql:host=localhost;dbname=Billetera', $usuario, $password);
-                                        $query = $db->prepare("SELECT $pedido(montoTransaccion) AS PrecioMax, C.nombreCliente AS NombreC, E.nombreEmpresa AS NombreE, fechaTransaccion AS fecha FROM billetera.transacciones T INNER JOIN billetera.clientes C INNER JOIN billetera.empresas E WHERE T.clientes_idCliente = C.dniCliente AND E.cuitEmpresa = T.empresas_idEmpresa ;
-                                        ");
-                                        $query = $db->prepare(SELECT montoTransaccion AS PrecioMax, C.nombreCliente AS NombreC, E.nombreEmpresa AS NombreE, fechaTransaccion AS fecha FROM billetera.transacciones T INNER JOIN billetera.clientes C INNER JOIN billetera.empresas E WHERE T.clientes_idCliente = C.dniCliente AND E.cuitEmpresa = T.empresas_idEmpresa AND montoTransaccion=(SELECT max(montoTransaccion) FROM transacciones);
+                                        $query = $db->prepare("SELECT montoTransaccion AS PrecioMax, C.nombreCliente AS NombreC, E.nombreEmpresa AS NombreE, fechaTransaccion AS fecha 
+                                                                FROM billetera.transacciones T 
+                                                                INNER JOIN billetera.clientes C 
+                                                                INNER JOIN billetera.empresas E 
+                                                                WHERE T.clientes_idCliente = C.dniCliente 
+                                                                AND E.cuitEmpresa = T.empresas_idEmpresa 
+                                                                AND montoTransaccion=(SELECT $pedido(montoTransaccion) FROM transacciones)");
                                         $query->execute();
                                         $data = $query->fetchAll();
                                         foreach ($data as $valores) :

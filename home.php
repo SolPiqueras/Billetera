@@ -31,6 +31,12 @@ if (isset($_SESSION['usuario'])) {
   </div>
   <div class="text-center">
     <h3>Hola <?php echo $nom; ?></h3>
+    <?php
+    if (isset($_GET['mensaje'])) {
+        echo '<div id="mensaje" class="alert alert-primary text-center">
+                    <p>' . $_GET['mensaje'] . '</p></div>';
+    }
+    ?>
     <p><a href="logout.php">Cerrar sesión</a></p>
     <p><a href="confirmar_delete.php" class="btn btn-danger r btnEliminarDatos">Eliminar mis datos</a></p>
   </div>

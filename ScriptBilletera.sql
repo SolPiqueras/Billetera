@@ -59,10 +59,10 @@ CREATE TABLE IF NOT EXISTS `billetera`.`transacciones` (
   INDEX `fk_transacciones_empresas1_idx` (`empresas_idEmpresa` ASC) VISIBLE,
   CONSTRAINT `fk_transacciones_clientes`
     FOREIGN KEY (`clientes_idCliente`)
-    REFERENCES `billetera`.`clientes` (`dniCliente`),
+    REFERENCES `billetera`.`clientes` (`dniCliente`) ON DELETE CASCADE,
   CONSTRAINT `fk_transacciones_empresas1`
     FOREIGN KEY (`empresas_idEmpresa`)
-    REFERENCES `billetera`.`empresas` (`cuitEmpresa`))
+    REFERENCES `billetera`.`empresas` (`cuitEmpresa`) ON DELETE CASCADE )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
